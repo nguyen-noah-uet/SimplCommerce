@@ -27,7 +27,8 @@
   {
     "id": "SimplCommerce.Module.Contacts",
     "isBundledWithHost": true,
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "disable": true
   },
   {
     "id": "SimplCommerce.Module.Core",
@@ -177,7 +178,8 @@
   {
     "id": "SimplCommerce.Module.Vendors",
     "isBundledWithHost": true,
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "disable": true
   },
   {
     "id": "SimplCommerce.Module.WishList",

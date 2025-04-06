@@ -163,3 +163,5 @@ PublishProfiles/
 logs/
 src/Modules/**/wwwroot/admin/*.min.js
 .vscode
+/.idea
+src/SimplCommerce.WebHost/tempkey.jwk

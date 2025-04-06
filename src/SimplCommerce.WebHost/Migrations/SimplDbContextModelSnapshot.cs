@@ -1072,70 +1072,6 @@ namespace SimplCommerce.WebHost.Migrations
                     b.ToTable("Comments_Comment", (string)null);
                 });
 
-            modelBuilder.Entity("SimplCommerce.Module.Contacts.Models.Contact", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("ContactAreaId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("EmailAddress")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("FullName")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContactAreaId");
-
-                    b.ToTable("Contacts_Contact", (string)null);
-                });
-
-            modelBuilder.Entity("SimplCommerce.Module.Contacts.Models.ContactArea", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts_ContactArea", (string)null);
-                });
-
             modelBuilder.Entity("SimplCommerce.Module.Core.Models.Address", b =>
                 {
                     b.Property<long>("Id")
@@ -1248,13 +1184,6 @@ namespace SimplCommerce.WebHost.Migrations
                             IsVisibleInCommonSettingPage = true,
                             Module = "Catalog",
                             Value = "true"
-                        },
-                        new
-                        {
-                            Id = "GoogleAppKey",
-                            IsVisibleInCommonSettingPage = false,
-                            Module = "Contact",
-                            Value = ""
                         },
                         new
                         {
@@ -1878,20 +1807,20 @@ namespace SimplCommerce.WebHost.Migrations
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "101cd6ae-a8ef-4a37-97fd-04ac2dd630e4",
                             CreatedOn = new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)),
-                            Email = "system@simplcommerce.com",
+                            Email = "system@abc.com",
                             EmailConfirmed = false,
                             FullName = "System User",
                             IsDeleted = true,
                             LatestUpdatedOn = new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)),
                             LockoutEnabled = false,
-                            NormalizedEmail = "SYSTEM@SIMPLCOMMERCE.COM",
-                            NormalizedUserName = "SYSTEM@SIMPLCOMMERCE.COM",
+                            NormalizedEmail = "system@abc.com",
+                            NormalizedUserName = "system@abc.com",
                             PasswordHash = "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "a9565acb-cee6-425f-9833-419a793f5fba",
                             TwoFactorEnabled = false,
                             UserGuid = new Guid("5f72f83b-7436-4221-869c-1b69b2e23aae"),
-                            UserName = "system@simplcommerce.com"
+                            UserName = "system@abc.com"
                         },
                         new
                         {
@@ -1899,20 +1828,20 @@ namespace SimplCommerce.WebHost.Migrations
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "c83afcbc-312c-4589-bad7-8686bd4754c0",
                             CreatedOn = new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)),
-                            Email = "admin@simplcommerce.com",
+                            Email = "admin@abc.com",
                             EmailConfirmed = false,
                             FullName = "Shop Admin",
                             IsDeleted = false,
                             LatestUpdatedOn = new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)),
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@SIMPLCOMMERCE.COM",
-                            NormalizedUserName = "ADMIN@SIMPLCOMMERCE.COM",
+                            NormalizedEmail = "ADMIN@ABC.COM",
+                            NormalizedUserName = "ADMIN@ABC.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "d6847450-47f0-4c7a-9fed-0c66234bf61f",
                             TwoFactorEnabled = false,
                             UserGuid = new Guid("ed8210c3-24b0-4823-a744-80078cf12eb4"),
-                            UserName = "admin@simplcommerce.com"
+                            UserName = "admin@abc.com"
                         });
                 });
 
@@ -3908,17 +3837,6 @@ namespace SimplCommerce.WebHost.Migrations
                     b.Navigation("Parent");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SimplCommerce.Module.Contacts.Models.Contact", b =>
-                {
-                    b.HasOne("SimplCommerce.Module.Contacts.Models.ContactArea", "ContactArea")
-                        .WithMany()
-                        .HasForeignKey("ContactAreaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ContactArea");
                 });
 
             modelBuilder.Entity("SimplCommerce.Module.Core.Models.Address", b =>

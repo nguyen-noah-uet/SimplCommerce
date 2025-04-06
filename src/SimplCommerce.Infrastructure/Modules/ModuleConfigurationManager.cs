@@ -21,7 +21,8 @@ namespace SimplCommerce.Infrastructure.Modules
                 {
                     Id = module.id,
                     Version = Version.Parse(module.version.ToString()),
-                    IsBundledWithHost = module.isBundledWithHost
+                    IsBundledWithHost = module.isBundledWithHost,
+                    Disable = module.disable,
                 };
             }
         }

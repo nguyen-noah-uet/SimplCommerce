@@ -8,7 +8,7 @@
     simplCommentEntity = { entityId: @Model.EntityId, entityTypeId: '@Model.EntityTypeId' };
 </script>
 
-<div class="comments" ng-app="simpl.comment" ng-controller="CommentCtrl as vm" ng-cloak">
+<div class="comments" ng-app="simpl.comment" ng-controller="CommentCtrl as vm" ng-cloak>
     @if(User.Identity.IsAuthenticated)
     {
         <form name="commentForm" novalidate>

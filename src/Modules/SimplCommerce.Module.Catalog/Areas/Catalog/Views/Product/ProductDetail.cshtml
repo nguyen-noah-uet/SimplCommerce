@@ -290,45 +290,45 @@
     }
 </div>
 
-@if (Model.RelatedProducts.Any())
-{
-    <!-- Related Products -->
-    <h2 class="page-header">@Localizer["Enjoy and see also"]</h2>
-    <div class="row product-list">
-        @foreach (var product in Model.RelatedProducts)
-        {
-            <div class="col-xs-6 col-md-3">
-                <partial name="_ProductThumbnail" model="product" />
-            </div>
-        }
-    </div>
-}
+@* @if (Model.RelatedProducts.Any()) *@
+@* { *@
+@*     <!-- Related Products --> *@
+@*     <h2 class="page-header">@Localizer["Enjoy and see also"]</h2> *@
+@*     <div class="row product-list"> *@
+@*         @foreach (var product in Model.RelatedProducts) *@
+@*         { *@
+@*             <div class="col-xs-6 col-md-3"> *@
+@*                 <partial name="_ProductThumbnail" model="product" /> *@
+@*             </div> *@
+@*         } *@
+@*     </div> *@
+@* } *@
 
-@if (Model.CrossSellProducts.Any())
-{
-    <!-- Cross-sell Products -->
-    <h2 class="page-header">@Localizer["Enjoy and take also"]</h2>
-    <div class="row product-list">
-        @foreach (var product in Model.CrossSellProducts)
-        {
-            <div class="col-xs-6 col-md-3">
-                <partial name="_ProductThumbnail" model="product" />
-            </div>
-        }
-    </div>
-}
-
-@await Component.InvokeAsync("ProductRecentlyViewed", new { productId = Model.Id })
-
-<div>
-    <h3>@Localizer["Customer reviews"]</h3>
-    @await Component.InvokeAsync("Review", new { entityId = Model.Id, entityTypeId = "Product" })
-</div>
-<br />
-<div>
-    <h3>@Localizer["Customer comments"]</h3>
-    @await Component.InvokeAsync("Comment", new { entityId = Model.Id, entityTypeId = "Product" })
-</div>
+@* @if (Model.CrossSellProducts.Any()) *@
+@* { *@
+@*     <!-- Cross-sell Products --> *@
+@*     <h2 class="page-header">@Localizer["Enjoy and take also"]</h2> *@
+@*     <div class="row product-list"> *@
+@*         @foreach (var product in Model.CrossSellProducts) *@
+@*         { *@
+@*             <div class="col-xs-6 col-md-3"> *@
+@*                 <partial name="_ProductThumbnail" model="product" /> *@
+@*             </div> *@
+@*         } *@
+@*     </div> *@
+@* } *@
+@* *@
+@* @await Component.InvokeAsync("ProductRecentlyViewed", new { productId = Model.Id }) *@
+@* *@
+@* <div> *@
+@*     <h3>@Localizer["Customer reviews"]</h3> *@
+@*     @await Component.InvokeAsync("Review", new { entityId = Model.Id, entityTypeId = "Product" }) *@
+@* </div> *@
+@* <br /> *@
+@* <div> *@
+@*     <h3>@Localizer["Customer comments"]</h3> *@
+@*     @await Component.InvokeAsync("Comment", new { entityId = Model.Id, entityTypeId = "Product" }) *@
+@* </div> *@
 
 @section scripts {
     <partial name="_ValidationScriptsPartial" />

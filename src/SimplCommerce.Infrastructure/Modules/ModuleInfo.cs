@@ -14,5 +14,6 @@ namespace SimplCommerce.Infrastructure.Modules
         public Version Version { get; set; }
 
         public Assembly Assembly { get; set; }
+        public bool? Disable { get; set; } = false;
     }
 }

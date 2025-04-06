@@ -782,6 +782,7 @@ GO
 INSERT [dbo].[Localization_Culture] ([Id], [Name]) VALUES ('vi-VN', N'Tiếng Việt')
 GO
 
+INSERT [dbo].[Localization_Resource] ([CultureId], [Key], [Value]) VALUES ('vi-VN', N'Shop name', N'Shop Name')
 INSERT [dbo].[Localization_Resource] ([CultureId], [Key], [Value]) VALUES ('vi-VN', N'Register', N'Đăng ký')
 INSERT [dbo].[Localization_Resource] ([CultureId], [Key], [Value]) VALUES ('vi-VN', N'Hello {0}!', N'Chào {0}!')
 INSERT [dbo].[Localization_Resource] ([CultureId], [Key], [Value]) VALUES ('vi-VN', N'Log in', N'Đăng nhập')

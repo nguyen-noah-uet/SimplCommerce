@@ -37,6 +37,10 @@ namespace SimplCommerce.WebHost.Extensions
         {
             foreach (var module in _modulesConfig.GetModules())
             {
+                if (module.Disable is true)
+                {
+                    continue;
+                }
                 if(!module.IsBundledWithHost)
                 {
                     TryLoadModuleAssembly(module.Id, module);

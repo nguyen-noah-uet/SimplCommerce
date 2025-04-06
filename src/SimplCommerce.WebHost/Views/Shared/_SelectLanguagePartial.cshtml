@@ -10,11 +10,12 @@
     var selectedCulture = (await WorkContext.GetCurrentUser()).Culture;
 }
 
-@if (GlobalConfiguration.Cultures.Count() > 1)
+@* @if (GlobalConfiguration.Cultures.Count() > 1) *@
+@if (true)
 {
 <li class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        Language (@uiCulture)
+        @Localizer["Language"] (@uiCulture)
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu lang-selector">

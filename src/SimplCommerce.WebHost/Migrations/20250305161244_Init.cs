@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SimplCommerce.WebHost.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDb : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -95,20 +95,6 @@ namespace SimplCommerce.WebHost.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cms_Menu", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Contacts_ContactArea",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contacts_ContactArea", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -256,6 +242,20 @@ namespace SimplCommerce.WebHost.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Core_WidgetZone", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Inventory_ProductBackInStockSubscription",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<long>(type: "bigint", nullable: false),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inventory_ProductBackInStockSubscription", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -453,32 +453,6 @@ namespace SimplCommerce.WebHost.Migrations
                         name: "FK_Catalog_ProductAttribute_Catalog_ProductAttributeGroup_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Catalog_ProductAttributeGroup",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Contacts_Contact",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    EmailAddress = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContactAreaId = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contacts_Contact", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Contacts_Contact_Contacts_ContactArea_ContactAreaId",
-                        column: x => x.ContactAreaId,
-                        principalTable: "Contacts_ContactArea",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -2163,6 +2137,7 @@ namespace SimplCommerce.WebHost.Migrations
                 {
                     { "Catalog.IsCommentsRequireApproval", true, "Catalog", "true" },
                     { "Catalog.IsProductPriceIncludeTax", true, "Catalog", "true" },
+                    { "Catalog.MinimumProductQuantityForHighlighting", true, "Catalog", "5" },
                     { "Catalog.ProductPageSize", true, "Catalog", "10" },
                     { "Global.AssetBundling", true, "Core", "false" },
                     { "Global.AssetVersion", true, "Core", "1.0" },
@@ -2170,7 +2145,6 @@ namespace SimplCommerce.WebHost.Migrations
                     { "Global.CurrencyDecimalPlace", true, "Core", "2" },
                     { "Global.DefaultCultureAdminUI", true, "Core", "en-US" },
                     { "Global.DefaultCultureUI", true, "Core", "en-US" },
-                    { "GoogleAppKey", false, "Contact", "" },
                     { "Localization.LocalizedConentEnable", true, "Localization", "true" },
                     { "News.PageSize", true, "News", "10" },
                     { "SmtpPassword", false, "EmailSenderSmpt", "" },
@@ -2220,8 +2194,8 @@ namespace SimplCommerce.WebHost.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedOn", "Culture", "DefaultBillingAddressId", "DefaultShippingAddressId", "Email", "EmailConfirmed", "ExtensionData", "FullName", "IsDeleted", "LatestUpdatedOn", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshTokenHash", "SecurityStamp", "TwoFactorEnabled", "UserGuid", "UserName", "VendorId" },
                 values: new object[,]
                 {
-                    { 2L, 0, "101cd6ae-a8ef-4a37-97fd-04ac2dd630e4", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), null, null, null, "system@simplcommerce.com", false, null, "System User", true, new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), false, null, "SYSTEM@SIMPLCOMMERCE.COM", "SYSTEM@SIMPLCOMMERCE.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "a9565acb-cee6-425f-9833-419a793f5fba", false, new Guid("5f72f83b-7436-4221-869c-1b69b2e23aae"), "system@simplcommerce.com", null },
-                    { 10L, 0, "c83afcbc-312c-4589-bad7-8686bd4754c0", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), null, null, null, "admin@simplcommerce.com", false, null, "Shop Admin", false, new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), false, null, "ADMIN@SIMPLCOMMERCE.COM", "ADMIN@SIMPLCOMMERCE.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "d6847450-47f0-4c7a-9fed-0c66234bf61f", false, new Guid("ed8210c3-24b0-4823-a744-80078cf12eb4"), "admin@simplcommerce.com", null }
+                    { 2L, 0, "101cd6ae-a8ef-4a37-97fd-04ac2dd630e4", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), null, null, null, "system@abc.com", false, null, "System User", true, new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), false, null, "system@abc.com", "system@abc.com", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "a9565acb-cee6-425f-9833-419a793f5fba", false, new Guid("5f72f83b-7436-4221-869c-1b69b2e23aae"), "system@abc.com", null },
+                    { 10L, 0, "c83afcbc-312c-4589-bad7-8686bd4754c0", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), null, null, null, "admin@abc.com", false, null, "Shop Admin", false, new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), false, null, "ADMIN@ABC.COM", "ADMIN@ABC.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "d6847450-47f0-4c7a-9fed-0c66234bf61f", false, new Guid("ed8210c3-24b0-4823-a744-80078cf12eb4"), "admin@abc.com", null }
                 });
 
             migrationBuilder.InsertData(
@@ -2488,11 +2462,6 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "IX_Comments_Comment_UserId",
                 table: "Comments_Comment",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Contacts_Contact_ContactAreaId",
-                table: "Contacts_Contact",
-                column: "ContactAreaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Core_Address_CountryId",
@@ -3025,9 +2994,6 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Comments_Comment");
 
             migrationBuilder.DropTable(
-                name: "Contacts_Contact");
-
-            migrationBuilder.DropTable(
                 name: "Core_AppSetting");
 
             migrationBuilder.DropTable(
@@ -3050,6 +3016,9 @@ namespace SimplCommerce.WebHost.Migrations
 
             migrationBuilder.DropTable(
                 name: "Core_WidgetInstance");
+
+            migrationBuilder.DropTable(
+                name: "Inventory_ProductBackInStockSubscription");
 
             migrationBuilder.DropTable(
                 name: "Inventory_Stock");
@@ -3143,9 +3112,6 @@ namespace SimplCommerce.WebHost.Migrations
 
             migrationBuilder.DropTable(
                 name: "Core_Entity");
-
-            migrationBuilder.DropTable(
-                name: "Contacts_ContactArea");
 
             migrationBuilder.DropTable(
                 name: "Core_Role");

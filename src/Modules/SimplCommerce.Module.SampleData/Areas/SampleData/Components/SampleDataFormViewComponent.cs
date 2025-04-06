@@ -13,7 +13,7 @@ namespace SimplCommerce.Module.SampleData.Areas.SampleData.Components
         {
             var sampleContentFolder = Path.Combine(GlobalConfiguration.ContentRootPath, "Modules", "SimplCommerce.Module.SampleData", "SampleContent");
             var directoryInfo = new DirectoryInfo(sampleContentFolder);
-            var industries = directoryInfo.GetDirectories().Select(x => x.Name).ToList();
+            var industries = directoryInfo.GetDirectories().Select(x => x.Name).Except(["Fashion"]).ToList();
             var model = new SampleDataOption { AvailableIndustries = industries };
             return View(this.GetViewPath(), model);
         }
